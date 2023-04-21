@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #0c626b;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #b73c3c;
+        border-radius: 4px;
+      }
+
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 12px 20px;
+        width: 100%;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #1ecf2c;
+      }
+    </style>
+  </head>
+  <body>
+      <form action="/login" method="post">
+      <h1>Login</h1>
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" placeholder="Enter your email">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password">
+      <p id="user-exists-message"></p>
+      Don't have an account? <a href="/signup">SignUp</a>
+      <br>
+      <br>
+      <input type="submit" value="Login">
+    </form>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const userExists = params.get('userExists');
+      const wrongPass = params.get('wrongpass');
+      if (userExists === 'false') {
+        const messageEl = document.getElementById('user-exists-message');
+        messageEl.textContent = 'User doesn\'t exist.';
+        messageEl.style.color = 'red';
+      }
+      if(wrongPass === 'true')
+      {
+        const messageEl = document.getElementById('user-exists-message');
+        messageEl.textContent = 'Wrong Password';
+        messageEl.style.color = 'red';
+      }
+    </script>
+      
+</body>
+</html>
