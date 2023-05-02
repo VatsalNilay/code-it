@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Questions</title>
+</head>
+<body>
+    <div id="questions-container">
+        <% questions.forEach(question => { %>
+            <p><%= question.title %>. <%= question.description %></p>
+        <% }); %>
+    </div>
+</body>
+</html>
