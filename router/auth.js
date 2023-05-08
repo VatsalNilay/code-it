@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 require('../db/conn')
 const User = require('../model/userSchema')
 
+
 router.get('/users',(req,res) =>{
     // res.json(USERS)
     res.send(`Hi from auth/user`)
@@ -59,7 +60,8 @@ router.post('/login', async(req, res) => {
         if(userLogin){
             const isMatch = await bcrypt.compare(password1,userLogin.password)
             if(isMatch){
-                res.status(201).send({message: `Welcome ${userLogin.username}`})
+                const token = await userLogin.generateAuthToken();
+                res.status(201).cookie('jwtoken',token,{ httpOnly:true }).send({message: `Welcome ${userLogin.username}, this is your token: ${token}`})
             }else{
                 res.status(401).redirect('/login?wrongpass=true');
             }
