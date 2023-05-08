@@ -52,13 +52,27 @@
   <body>
       <form action="/signup" method="post">
       <h1>SignUp</h1>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Select your username" required>
       <label for="email">Email</label>
-      <input type="text" id="email" name="email" placeholder="Enter your email">
+      <input type="text" id="email" name="email" placeholder="Enter your email" required>
 
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password">
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
       <p id="user-exists-message"></p>
-    
+
+      Role <br>
+      
+      <label>
+        <input type="radio" name="role" value="user" checked>
+        User
+      </label>
+      <label>
+        <input type="radio" name="role" value="admin" >
+        Admin
+      </label >
+      <br><br>
+
       Already have an account? <a href="/login">LogIn</a>
       <br>
       <br>
@@ -67,11 +81,18 @@
     </form>
     <script>
       const params = new URLSearchParams(window.location.search);
-      const userExists = params.get('userExists');
+      const duplicateEmail = params.get('duplicateEmail');
+      const duplicateUserName = params.get('duplicateUserName');
+
       
-      if (userExists === 'true') {
+      if (duplicateEmail === 'true') {
         const messageEl = document.getElementById('user-exists-message');
-        messageEl.textContent = 'User already exists';
+        messageEl.textContent = 'Email already exists';
+        messageEl.style.color = 'red';
+      }
+      if (duplicateUserName === 'true') {
+        const messageEl = document.getElementById('user-exists-message');
+        messageEl.textContent = 'Username already exists';
         messageEl.style.color = 'red';
       }
     </script>
