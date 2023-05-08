@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
 const jwt = require('jsonwebtoken');
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 const port = 3001
 const bodyParser = require('body-parser');
 
