@@ -1,4 +1,5 @@
-require('dotenv').config({path: "./vars/.env"})
+// require('dotenv').config({path: "./vars/.env"}) //if.env file is in vars directory
+require('dotenv').config()
 require('./db/conn.js')
 const mongoose = require('mongoose')
 const express = require('express')
